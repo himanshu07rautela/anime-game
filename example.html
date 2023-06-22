@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add/Remove Class Example</title>
+  <style>
+    .animated-button {
+      transition: background-color 0.5s ease-in-out;
+    }
+
+    .animated-button.highlight {
+      background-color: yellow;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <button class="animated-button">Button 1</button>
+  <button class="animated-button">Button 2</button>
+  <button class="animated-button">Button 3</button>
+  <button class="animated-button">Button 4</button>
+
+  <script>
+    $(document).ready(function() {
+      var buttons = $('.animated-button');
+      var index = 0;
+
+      function animateButton() {
+        buttons.eq(index).addClass('highlight');
+        setTimeout(function() {
+          buttons.eq(index).removeClass('highlight');
+          index++;
+          if (index < buttons.length) {
+            setTimeout(animateButton, 500);
+          }
+        }, 500);
+      }
+
+      animateButton();
+    });
+  </script>
+</body>
+</html>
